@@ -3,11 +3,16 @@ import { ethers, upgrades } from "hardhat";
 
 describe("MyToken", function () {
   it("Test contract", async function () {
-    const ContractFactory = await ethers.getContractFactory("MyToken");
+    const ImplementationFactory = await ethers.getContractFactory("MyToken");
+    const implementation = <string> await upgrades.deployImplementation(ImplementationFactory);
 
-    const instance = await upgrades.deployProxy(ContractFactory);
-    await instance.deployed();
+    const RBACBeaconFactory = await ethers.getContractFactory("RBACBeacon");
+    const beacon = await RBACBeaconFactory.deploy(implementation);
+    await beacon.deployed();
 
-    expect(await instance.name()).to.equal("MyToken");
+    const proxy = await upgrades.deployBeaconProxy(beacon.address, ImplementationFactory);
+    await proxy.deployed();
+
+    expect(await proxy.name()).to.equal("MyToken");
   });
 });

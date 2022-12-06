@@ -1,12 +1,18 @@
 import { ethers, upgrades } from "hardhat";
 
 async function main() {
-  const ContractFactory = await ethers.getContractFactory("MyToken");
+  const ImplementationFactory = await ethers.getContractFactory("MyToken");
+  const implementation = <string> await upgrades.deployImplementation(ImplementationFactory);
+  console.log(`Implementation deployed to ${implementation}`);
 
-  const instance = await upgrades.deployProxy(ContractFactory);
-  await instance.deployed();
+  const CustomBeaconFactory = await ethers.getContractFactory("RBACBeacon");
+  const beacon = await CustomBeaconFactory.deploy(implementation);
+  await beacon.deployed();
+  console.log(`Custom beacon deployed to ${beacon.address}`);
 
-  console.log(`Proxy deployed to ${instance.address}`);
+  const proxy = await upgrades.deployBeaconProxy(beacon.address, ImplementationFactory);
+  await proxy.deployed();
+  console.log(`Proxy deployed to ${proxy.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
