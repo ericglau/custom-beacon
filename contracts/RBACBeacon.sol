@@ -18,7 +18,7 @@ contract RBACBeacon is IBeacon, AccessControl {
     event Upgraded(address indexed implementation);
 
     /**
-     * @dev Sets the address of the initial implementation, and the deployer account as the owner who can upgrade the
+     * @dev Sets the address of the initial implementation, and the deployer account with the role that can upgrade the
      * beacon.
      */
     constructor(address implementation_) {

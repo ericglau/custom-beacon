@@ -5,7 +5,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract MyToken is Initializable, ERC20Upgradeable, OwnableUpgradeable {
+contract MyTokenV2 is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -17,6 +17,6 @@ contract MyToken is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     }
 
     function version() public pure returns(string memory) {
-        return "1";
+        return "2";
     }
 }
