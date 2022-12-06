@@ -21,7 +21,7 @@ npm install
 
 ## Testing
 
-See test/test.ts for an example test case.
+See [test/test.ts](test/test.ts) for an example test case.
 
 Run tests with:
 ```
@@ -30,7 +30,7 @@ npm test
 
 ## Deploying
 
-See scripts/deploy.ts for an example deployment script.
+See [scripts/deploy.ts](scripts/deploy.ts) for an example deployment script.
 
 Set the `DEFAULT_ADMIN_ADDRESS` and `UPGRADER_ADDRESS` constants in the script.
 
