@@ -30,7 +30,9 @@ npm test
 
 See scripts/deploy.ts for an example deployment script.
 
-You can target any network from your Hardhat config using:
+Set the `DEFAULT_ADMIN_ADDRESS` and `UPGRADER_ADDRESS` constants in the script.
+
+Run the script to target any network from your Hardhat config using:
 ```
 npx hardhat run --network <network-name> scripts/deploy.ts
 ```
