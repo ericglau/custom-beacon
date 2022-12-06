@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-// This contract is provided as an example of an upgradeable beacon with role-based access control.
+
+// This contract is provided as an example only.
 
 pragma solidity ^0.8.0;
 
