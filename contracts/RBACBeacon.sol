@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// This contract is provided as an example only.
+// This contract is provided as an example of an upgradeable beacon with role-based access control.
 
 pragma solidity ^0.8.0;
 
@@ -7,6 +7,12 @@ import "@openzeppelin/contracts/proxy/beacon/IBeacon.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 
+/**
+ * @dev This contract is used in conjunction with one or more instances of {BeaconProxy} to determine their
+ * implementation contract, which is where they will delegate all function calls.
+ *
+ * An account with the upgrader role is able to change the implementation the beacon points to, thus upgrading the proxies that use this beacon.
+ */
 contract RBACBeacon is IBeacon, AccessControl {
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
 
@@ -19,7 +25,7 @@ contract RBACBeacon is IBeacon, AccessControl {
 
     /**
      * @dev Sets the address of the initial implementation, an account for the default admin role,
-     * and an account with role that can upgrade the beacon.
+     * and an account for the role that can upgrade the beacon.
      */
     constructor(address implementation_, address default_admin, address upgrader) {
         _grantRole(DEFAULT_ADMIN_ROLE, default_admin);

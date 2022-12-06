@@ -1,6 +1,8 @@
 # Hardhat Upgrades with Custom Beacon
 
-This project demonstrates how to use a custom beacon with [OpenZeppelin Hardhat Upgrades](https://docs.openzeppelin.com/upgrades-plugins/1.x/hardhat-upgrades). It comes with some example contracts, a test case, and an example deployment script.
+This project demonstrates how to use a custom beacon with [OpenZeppelin Hardhat Upgrades](https://docs.openzeppelin.com/upgrades-plugins/1.x/hardhat-upgrades). It comes with some example contracts, a test case, and a deployment script.
+
+The custom beacon used in this example is an upgradeable beacon with role-based access control.
 
 ## Overview
 
