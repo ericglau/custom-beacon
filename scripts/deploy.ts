@@ -1,6 +1,11 @@
 import { ethers, upgrades } from "hardhat";
 
 async function main() {
+
+  // TODO set these to the addresses that will receive the default admin and upgrader roles, respectively
+  // const DEFAULT_ADMIN_ADDRESS = 
+  // const UPGRADER_ADDRESS = 
+
   // Use Hardhat Upgrades plugin to validate and deploy the implementation
   const ImplementationFactory = await ethers.getContractFactory("MyToken");
   const implementation = <string> await upgrades.deployImplementation(ImplementationFactory);
@@ -8,7 +13,7 @@ async function main() {
 
   // Deploy the custom beacon directly
   const CustomBeaconFactory = await ethers.getContractFactory("RBACBeacon");
-  const beacon = await CustomBeaconFactory.deploy(implementation);
+  const beacon = await CustomBeaconFactory.deploy(implementation, DEFAULT_ADMIN_ADDRESS, UPGRADER_ADDRESS);
   await beacon.deployed();
   console.log(`Custom beacon deployed to ${beacon.address}`);
 

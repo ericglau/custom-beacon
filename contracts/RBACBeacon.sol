@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// This contract is provided as an example only and has not been reviewed.
+// This contract is provided as an example only.
 
 pragma solidity ^0.8.0;
 
@@ -18,12 +18,12 @@ contract RBACBeacon is IBeacon, AccessControl {
     event Upgraded(address indexed implementation);
 
     /**
-     * @dev Sets the address of the initial implementation, and the deployer account with the role that can upgrade the
-     * beacon.
+     * @dev Sets the address of the initial implementation, an account for the default admin role,
+     * and an account with role that can upgrade the beacon.
      */
-    constructor(address implementation_) {
-        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _grantRole(UPGRADER_ROLE, msg.sender);
+    constructor(address implementation_, address default_admin, address upgrader) {
+        _grantRole(DEFAULT_ADMIN_ROLE, default_admin);
+        _grantRole(UPGRADER_ROLE, upgrader);
         _setImplementation(implementation_);
     }
 
