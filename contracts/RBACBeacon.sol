@@ -41,7 +41,7 @@ contract RBACBeacon is IBeacon, AccessControl {
      *
      * Requirements:
      *
-     * - msg.sender must be the owner of the contract.
+     * - msg.sender must have the role that can upgrade the beacon.
      * - `newImplementation` must be a contract.
      */
     function upgradeTo(address newImplementation) public virtual onlyRole(UPGRADER_ROLE) {
